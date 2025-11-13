@@ -149,7 +149,7 @@ class TempFileCleaner:
                 f.write(f"**Pfad:** `{data['path']}`\n\n")
 
                 if not data['exists']:
-                    f.write("❌ **Status:** Pfad existiert nicht\n\n")
+                    f.write("**Status:** Pfad existiert nicht\n\n")
                     continue
 
                 f.write(f"- **Größe:** {self.format_size(data['size'])}\n")
@@ -241,7 +241,7 @@ class TempFileCleaner:
 
         result_msg = f"✓ {deleted_files} Dateien gelöscht ({self.format_size(deleted_size)} freigegeben)"
         if errors:
-            result_msg += f"\n⚠ {len(errors)} Dateien konnten nicht gelöscht werden"
+            result_msg += f"\n{len(errors)} Dateien konnten nicht gelöscht werden"
 
         return True, result_msg
 
@@ -285,7 +285,7 @@ class TempFileCleaner:
                 indices = [int(x.strip()) for x in choice.split(',')]
                 locations_to_delete = [sorted_results[i - 1][0] for i in indices if 1 <= i <= len(sorted_results)]
             except (ValueError, IndexError):
-                print("❌ Ungültige Eingabe!")
+                print("Ungültige Eingabe!")
                 return
 
         if not locations_to_delete:
@@ -297,7 +297,7 @@ class TempFileCleaner:
             self.scan_results[loc]['size'] for loc in locations_to_delete
         )
 
-        print(f"\n⚠ WARNUNG: Du bist dabei {self.format_size(total_size_to_delete)} zu löschen!")
+        print(f"\nWARNUNG: Du bist dabei {self.format_size(total_size_to_delete)} zu löschen!")
         print(f"Betroffene Orte: {', '.join(locations_to_delete)}")
         confirm = input("\nWirklich löschen? (ja/nein): ").strip().lower()
 
@@ -333,7 +333,7 @@ def main():
     # Schritt 2: Markdown-Report erstellen
     print("Erstelle Markdown-Report...")
     report_path = cleaner.create_markdown_report()
-    print(f"✓ Report erstellt: {report_path}\n")
+    print(f"Report erstellt: {report_path}\n")
 
     # Schritt 3: Interaktive Bereinigung anbieten
     proceed = input("Möchtest du jetzt Dateien löschen? (ja/nein): ").strip().lower()
@@ -342,7 +342,7 @@ def main():
     else:
         print("\nKeine Bereinigung durchgeführt. Du kannst den Report jederzeit einsehen.")
 
-    print(f"\n✓ Fertig! Report gespeichert unter: {report_path}")
+    print(f"\nFertig! Report gespeichert unter: {report_path}")
 
 
 if __name__ == "__main__":
@@ -351,7 +351,7 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         print("\n\nProgramm durch Benutzer abgebrochen.")
     except Exception as e:
-        print(f"\n❌ Unerwarteter Fehler: {e}")
+        print(f"\nUnerwarteter Fehler: {e}")
         import traceback
 
         traceback.print_exc()
