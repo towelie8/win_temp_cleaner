@@ -1,6 +1,6 @@
 # Windows Temporary Files Cleaner
 
-Ein intelligenter Scanner und Cleaner für Windows 10/11 Temporärdateien. Dieses Tool scannt und löscht temporäre Dateien, die sich über Zeit ansammeln und deine Festplatte zumüllen sowie deinen PC verlangsamen.
+Ein Scanner und Cleaner für Windows 10/11 Temporärdateien. Dieses Tool scannt und löscht temporäre Dateien, die sich über Zeit ansammeln und deine Festplatte zumüllen sowie deinen PC verlangsamen.
 
 ## Warum?
 
@@ -56,11 +56,15 @@ Das Tool scannt automatisch alle bekannten Temp-Locations und zeigt:
 - Warnungen bei Zugriffsproblemen
 
 ### Report generieren
+
 Es wird ein detaillierter Markdown-Report erstellt (`temp_scan_report_YYYYMMDD_HHMMSS.md`), der:
 - Zusammenfassung des gesamten Speicherverbrauchs
 - Detaillierte Aufschlüsselung pro Ort
 - Empfehlungen zur Bereinigung
 - Fehlerdetails (bei Bedarf)
+
+### Beispiel-Report
+> example\example_scan_report.md
 
 ### Interaktive Bereinigung
 Du kannst dann wählen, ob und welche Temp-Dateien gelöscht werden sollen:
