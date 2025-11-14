@@ -1,32 +1,75 @@
 # Windows Temporary Files Cleaner
 
-Ein Scanner und Cleaner für Windows 10/11 Temporärdateien. Dieses Tool scannt und löscht temporäre Dateien, die sich über Zeit ansammeln und deine Festplatte zumüllen sowie deinen PC verlangsamen.
+Ein umfassender Scanner und Cleaner für Windows 10/11 Temporärdateien. **Version 2.0 Extended** scannt über **50 Locations** und kann **60-300 GB** an versteckten temporären Dateien finden und löschen!
+
+## Neu in Version 2.0
+
+- **50+ Scan-Locations** (vorher nur 9)
+- **Intelligente Prioritätssortierung** (Kritisch → Hoch → Mittel → Niedrig)
+- **Kategorie-basierte Organisation** (System, Browser, Gaming, Development, etc.)
+- **Prozess-Erkennung** (verhindert Löschen wenn Apps laufen)
+- **Service-Management** (stoppt/startet Services sicher)
+- **Erweiterte Reports** mit Größenanalyse und Empfehlungen
+- **Modulare Architektur** für einfache Erweiterung
 
 ## Warum?
 
-Windows speichert automatisch Temporärdateien an vielen Orten:
-- **Browser-Cache** (Chrome, Firefox, Edge)
-- **Windows Update-Cache**
-- **Prefetch-Dateien**
-- **Benutzer-Temp-Ordner**
-- **Thumbnail-Datenbanken**
-- Und weitere Systemcaches
+Windows speichert automatisch Temporärdateien an **dutzenden versteckten Orten**:
 
-Diese Dateien können sich über Wochen und Monate zu **mehreren Gigabyte** ansammeln und:
-- Wertvollen Speicherplatz auf deiner Festplatte verschwenden
+### System-Caches (oft 20-100 GB)
+- **Windows.old** (15-30 GB) - Alte Windows-Installation
+- **Windows Error Reports** (5-50 GB) - Crash-Dumps
+- **CBS Logs** (bis 20 GB) - Windows Update Logs
+- **Defender Scan History** (10-20 GB) - Defender Cache
+- **ETL Diagnostic Logs** (10-50 GB) - Telemetrie-Daten
+- **Delivery Optimization** (1-20 GB) - P2P Update Cache
+
+### Application-Caches (oft 10-50 GB)
+- **Browser-Caches** (Chrome, Firefox, Edge)
+- **Discord, Teams, Slack, Spotify** - Chat/Media Caches
+- **GPU Shader Caches** (NVIDIA, AMD, Intel)
+- **Development Tools** (npm, pip, Visual Studio)
+
+### Und viele mehr!
+
+Diese Dateien können sich zu **mehreren hundert Gigabyte** ansammeln und:
+- Wertvollen Speicherplatz verschwenden
 - Die Systemleistung verlangsamen
-- Unnötige Schreibvorgänge verursachen und die Festplatte abnutzen
-- FPS (z.B. in CS2 negativ beeinflussen)
+- SSD-Lebensdauer durch unnötige Schreibvorgänge reduzieren
+- FPS in Spielen negativ beeinflussen
 
-## Funktionen
+## Features
 
-**Vollständiger Scan** - Scannt 9+ Systemlokationen auf temporäre Dateien
-**Detaillierte Reports** - Erstellt aussagekräftige Markdown-Reports mit Statistiken
-**Sicherheit zuerst** - Interaktive Bestätigung vor dem Löschen
-**Selective Cleanup** - Wähle aus, welche Orte gelöscht werden sollen
-**Fehlerbehandlung** - Robuste Handhabung von Zugriffsfehlern
-**Einsehbarer Quellcode** - Absolut sicher, trotzdem ist die Nutzung auf eigene Gefahr
+### Vollständiger Scan
+- Scannt **50+ kritische Locations**
+- Findet versteckte Temp-Dateien die andere Tools übersehen
+- Zeigt detaillierte Größen- und Dateianzahl-Statistiken
 
+### Intelligente Priorisierung
+- 🔴 **Kritisch**: Große Dateien mit spezieller Behandlung
+- 🟠 **Hoch**: Große, sicher löschbare Dateien  
+- 🟡 **Mittel**: Moderate Größe
+- 🟢 **Niedrig**: Klein oder bedingt löschbar
+- ⚫ **Nur Anzeige**: NIEMALS löschen (z.B. Windows Installer)
+
+### Sicherheit First
+- Interaktive Bestätigung vor dem Löschen
+- Prozess-Erkennung (verhindert Löschen wenn App läuft)
+- Service-Management (stoppt/startet Services sicher)
+- Admin-Rechte-Prüfung
+- Detaillierte Fehlerbehandlung
+- Mehrfache Bestätigungen bei kritischen Locations
+
+### Detaillierte Reports
+- Markdown-Reports mit vollständiger Statistik
+- Sortierung nach Priorität und Kategorie
+- Warnungen bei kritischen Locations
+- Empfehlungen für optimale Bereinigung
+
+### Selective Cleanup
+- Wähle spezifische Locations zum Löschen
+- Lösche nur hohe Priorität
+- Oder alle sicheren Locations auf einmal
 
 ## Quickstart
 
@@ -38,119 +81,171 @@ Diese Dateien können sich über Wochen und Monate zu **mehreren Gigabyte** ansa
 ### Installation & Ausführung
 
 ```bash
-# Clone oder Download des Repositories
+# Clone Repository
+git clone https://github.com/towelie8/win_temp_cleaner
 cd win_temp_cleaner
 
-# Script ausführen
+# Auf dev-Branch wechseln für Version 2.0
+git checkout dev
+
+# Script mit Admin-Rechten ausführen
 python main.py
 ```
 
-## Schritte nach dem Start
+## Verwendung
 
-Das Tool durchläuft 3 einfache Schritte:
+### 1. Scan durchführen
+```bash
+python main.py
+```
 
-### Scan durchführen
-Das Tool scannt automatisch alle bekannten Temp-Locations und zeigt:
-- Größe jedes Temp-Ordners
+Das Tool scannt automatisch alle 50+ Locations und zeigt:
+- Gefundene Größe pro Location
 - Anzahl der Dateien
-- Warnungen bei Zugriffsproblemen
+- Prioritätseinstufung
+- Warnungen bei kritischen Locations
 
-### Report generieren
+### 2. Report generieren
 
-Es wird ein detaillierter Markdown-Report erstellt (`temp_scan_report_YYYYMMDD_HHMMSS.md`), der:
-- Zusammenfassung des gesamten Speicherverbrauchs
-- Detaillierte Aufschlüsselung pro Ort
-- Empfehlungen zur Bereinigung
-- Fehlerdetails (bei Bedarf)
+Ein detaillierter Markdown-Report wird automatisch erstellt:
+```
+temp_scan_report_YYYYMMDD_HHMMSS.md
+```
 
-### Beispiel-Report
-> example\example_scan_report.md
+Der Report enthält:
+- Zusammenfassung der gesamten Speichernutzung
+- Aufschlüsselung nach Priorität
+- Aufschlüsselung nach Kategorie
+- Top 10 größte Locations
+- Detaillierte Empfehlungen
 
-### Interaktive Bereinigung
-Du kannst dann wählen, ob und welche Temp-Dateien gelöscht werden sollen:
+### 3. Interaktive Bereinigung
+
+Wähle aus verschiedenen Optionen:
 ```
 Optionen:
-  a         - Alle Orte löschen
-  1,2,3     - Spezifische Nummern löschen (kommagetrennt)
-  q         - Abbrechen
+  a       - Alle SICHEREN Locations löschen
+  h       - Nur HOHE Priorität löschen
+  1,2,3   - Spezifische Nummern löschen (kommagetrennt)
+  q       - Abbrechen
 ```
 
-## Gescannte Lokationen
+## Gescannte Locations
 
-Das Tool scannt diese Windows-Verzeichnisse:
+### 🔴 Kritische Priorität (Spezielle Behandlung)
+| Location | Typische Größe | Beschreibung |
+|----------|---------------|--------------|
+| Windows.old | 15-30 GB | Vorherige Windows-Installation |
+| $Windows.~BT | 3-20 GB | Windows Upgrade-Dateien |
+| CBS Logs | 0.1-20 GB | Update-/Component-Logs |
+| WER Reports | 1-10 GB | Windows Error Reports |
+| Memory Dumps | 1-64 GB | BSOD Crash Dumps |
+| Defender Scan History | 10-20 GB | Defender Cache Files |
+| ETL Diagnostic Logs | 10-50 GB | Telemetrie-Daten |
 
-| Ort | Pfad |
-|-----|------|
-| Windows Temp | `C:\Windows\Temp` |
-| User Temp | `C:\Users\[User]\AppData\Local\Temp` |
-| Windows Update Cache | `C:\Windows\SoftwareDistribution\Download` |
-| Prefetch | `C:\Windows\Prefetch` |
-| Chrome Cache | `C:\Users\[User]\AppData\Local\Google\Chrome\User Data\Default\Cache` |
-| Edge Cache | `C:\Users\[User]\AppData\Local\Microsoft\Edge\User Data\Default\Cache` |
-| Firefox Cache | `C:\Users\[User]\AppData\Local\Mozilla\Firefox\Profiles` |
-| Windows Explorer Thumbnails | `C:\Users\[User]\AppData\Local\Microsoft\Windows\Explorer` |
-| Internet Explorer Cache | `C:\Users\[User]\AppData\Local\Microsoft\Windows\INetCache` |
+### 🟠 Hohe Priorität (Große, sichere Dateien)
+- Delivery Optimization Cache (1-20 GB)
+- Adobe Temp Files (0.5-100 GB)
+- Application Crash Dumps (1-5 GB)
+- Live Kernel Reports (0.5-2 GB)
+
+### 🟡 Mittlere Priorität (Moderate Größe)
+- Browser Caches (Chrome, Firefox, Edge)
+- Discord, Teams, Slack, Spotify Caches
+- GPU Shader Caches (NVIDIA, AMD, Intel, DirectX)
+- Development Tool Caches (npm, pip, NuGet)
+- Windows Update Cache
+
+### 🟢 Niedrige Priorität (Klein)
+- Windows Explorer Thumbnails
+- Icon Cache
+- Font Cache
+- Recent Documents
+- Notification Cache
+
+### ⚫ Nur Anzeige (NIEMALS LÖSCHEN)
+- ❌ Windows Installer Cache (C:\Windows\Installer)
+- ❌ WinSxS Component Store (nur via DISM)
 
 ## Sicherheitshinweise
 
-- **Bestätigung erforderlich**: Das Tool fordert dich auf, jede Löschung zu bestätigen
-- **Sichere Dateien**: Es werden nur bekannte temporäre Dateien gelöscht, keine Systemdateien
-- **Fehlerbehandlung**: Dateien, die nicht gelöscht werden können (z.B. wegen Zugriffsrechten), werden übersprungen
-- **Reports speichern**: Der Scan-Report wird immer gespeichert, auch wenn du keine Dateien löschst
-- **Admin-Rechte empfohlen**: Für vollständigen Zugriff solltest du das Script mit Administrator-Rechten ausführen
+### Was ist sicher?
+Alle Locations mit grünem Häkchen im Report
+Locations mit Priorität "Hoch" oder "Mittel"
+Temporäre Caches und Browser-Daten
+
+### Was ist NICHT sicher?
+❌ **Windows Installer Cache** - Bricht Updates/Deinstallation
+❌ **WinSxS direkt löschen** - Nur über DISM-Tools!
+
+### Empfohlene Vorgehensweise
+1. **Backup wichtiger Daten** vor großen Bereinigungen
+2. **Als Administrator ausführen** für vollständigen Zugriff
+3. **Report lesen** vor dem Löschen
+4. **Bei Windows.old**: Nur löschen wenn >30 Tage seit Upgrade
+5. **Apps schließen** vor Bereinigung ihrer Caches
 
 ## Typische Ergebnisse
 
-Nach dem Cleanup kannst du normalerweise erwarten:
-- **Speicherfreigabe**: 100 MB bis mehrere GB (abhängig vom System und der Nutzung)
-- **Schnellerer PC**: Weniger Disk-I/O und mehr verfügbarer RAM
+Nach einer vollständigen Bereinigung kannst du erwarten:
+
+- **Speicherfreigabe**: 60 MB - 300+ GB (abhängig vom Systemalter)
+- **Schnellerer PC**: Weniger Disk-I/O, mehr verfügbarer Cache
 - **Bessere SSD-Lebensdauer**: Reduzierte Schreibvorgänge
+- **Verbesserte FPS**: Durch freigegebenen GPU-Shader-Cache-Speicher
 
-## Beispiel-Report
+## Dokumentation
 
-Der erstellte Report enthält:
+- **README.md** (diese Datei) - Benutzer-Dokumentation
+- **README_DEV.md** - Entwickler-Dokumentation und Architektur
+- **config.py** - Alle Location-Definitionen
+- **utils.py** - Utility-Funktionen
+- **main.py** - Hauptanwendung
+
+## Development
+
+### Projekt-Struktur
 ```
-# Windows Temporäre Dateien - Scan Report
-
-**Erstellt am:** 13.11.2025 um 16:35:22
-**Benutzer:** deinbenutzername
-
-## Zusammenfassung
-- **Gesamtgröße:** 2.45 GB
-- **Anzahl Dateien:** 15,342
-- **Gescannte Orte:** 9
-
-## Detaillierte Ergebnisse
-...
+win_temp_cleaner/
+├── main.py           # Hauptanwendung
+├── config.py         # 50+ Location-Definitionen
+├── utils.py          # Prozess-/Service-Management
+├── README.md         # Benutzer-Doku
+├── README_DEV.md     # Entwickler-Doku
+└── .gitignore
 ```
 
-## Technische Details
+### Neue Location hinzufügen
+Siehe **README_DEV.md** für Details zum Hinzufügen neuer Locations.
 
-- **Sprache**: Python 3
-- **Abhängigkeiten**: Nur Python Standard Library (keine externen Pakete erforderlich)
-- **Plattform**: Windows 10/11 nur
-- **Größe**: Minimal (~14 KB)
+## ❓ FAQ
 
-## FAQ
+**F: Ist es sicher, alle Temp-Dateien zu löschen?**  
+**A:** Ja, alle als "safe_delete=True" markierten Locations sind sicher. Windows erstellt temporäre Dateien bei Bedarf neu.
 
-**F:** *Ist es sicher, alle Temp-Dateien zu löschen?* 
+**F: Warum finde ich mehr Dateien als Tool XYZ?**  
+**A:** Wir scannen 50+ Locations inkl. versteckter System-Caches, die viele Tools übersehen (z.B. ETL Logs, Defender History, CBS Logs).
 
-**A:** *Ja, temporäre Dateien sind per Definition nicht essentiell. Windows erstellt sie bei Bedarf neu.*
+**F: Brauche ich Administrator-Rechte?**  
+**A:** Empfohlen! Ohne Admin-Rechte können System-Temp-Ordner nicht gescannt werden (~30% der Locations).
 
-**F:** *Brauche ich Administrator-Rechte?*
-**A:** *Empfohlen, damit das Tool auf alle Verzeichnisse zugreifen kann. Ohne Admin-Rechte können einige Dateien übersprungen werden.*
+**F: Kann ich das Tool regelmäßig ausführen?**  
+**A:** Ja! Völlig sicher, monatlich oder bei Speicherknappheit ausführen.
 
-**F:** *Kann ich das Tool regelmäßig ausführen?*
-**A:** *Ja! Es ist völlig sicher, es regelmäßig (z.B. monatlich) auszuführen.*
+**F: Was passiert mit meinen persönlichen Daten?**  
+**A:** Das Tool löscht NUR temporäre System- und Cache-Dateien. Dokumente, Fotos, Downloads bleiben unberührt.
 
-**F:** *Was passiert mit meinen persönlichen Daten?*
-**A:** *Das Tool löscht nur bekannte Windows-Temp-Verzeichnisse. Deine Dateien, Dokumente und Einstellungen bleiben unberührt.*
+**F: Kann das Tool mein System beschädigen?**  
+**A:** Nein, wenn du die Warnungen beachtest. Wir löschen NIEMALS kritische System-Ordner wie Windows Installer oder WinSxS direkt.
 
 ## Lizenz
 
-Dieses Projekt ist frei nutzbar. Über die Erwähnung oder Stern in GitHub würde ich mich sehr freuen.
+MIT License - Siehe LICENSE Datei
 
----
+## Autor
 
-**Hinweis:** Dieses Tool wurde für Windows 10/11 entwickelt. Führe es mit Administrator-Rechten aus für beste Ergebnisse.
+**GitHub:** [@towelie8](https://github.com/towelie8)
 
+## Stern geben!
+
+Wenn dir dieses Tool geholfen hat, Speicherplatz freizugeben, gib dem Repository einen Stern auf GitHub! ⭐
