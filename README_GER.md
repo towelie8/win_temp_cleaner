@@ -2,7 +2,7 @@
 
 Ein umfassender Scanner und Cleaner für Windows 10/11 Temporärdateien. **Version 2.0 Extended** scannt über **50 Locations** und kann **60-300 GB** an versteckten temporären Dateien finden und löschen!
 
-## Neu in Version 2.0
+## Neu in Version 0.8.1
 
 - **50+ Scan-Locations** (vorher nur 9)
 - **Intelligente Prioritätssortierung** (Kritisch → Hoch → Mittel → Niedrig)

@@ -4,7 +4,7 @@ A comprehensive scanner and cleaner for Windows 10/11 temporary files. **Version
 
 > 🇩🇪 **Deutsche Version:** [README_GER.md](README_GER.md)
 
-## New in Version 2.0
+## New in Version 0.8.1
 
 - **50+ Scan Locations** (previously only 9)
 - **Intelligent Priority Sorting** (Critical → High → Medium → Low)
